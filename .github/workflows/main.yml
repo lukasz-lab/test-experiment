@@ -25,6 +25,7 @@ jobs:
     #tb removed
     - name: LS
       run: |
+        echo process.env.INSTALL_LOCATION
         ls
         cd output && ls
         cd ../node_modules && ls
