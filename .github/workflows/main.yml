@@ -27,8 +27,7 @@ jobs:
       run: |
         ls
         cd output && ls
-        echo "dziaba" && ls
-        cd ../node-modules && ls
+        cd ../node_modules && ls
       
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
