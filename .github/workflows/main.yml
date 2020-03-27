@@ -24,14 +24,14 @@ jobs:
     
     #tb removed
     - name: Generating Markdown from my AsyncAPI document
-      run: ls
+      run: cd output && ls
       
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
       uses: derberg/github-action-for-generator@v1.0.6
       with:
         template: '@asyncapi/html'
-        filepath: docs/api/my-asyncapi.yaml
+        filepath: docs/api/my-asyncapi.yml
         parameters: 'baseHref=/test-experiment/ sidebarOrganization=byTags' #space separated list of key/values
         output: 'generated-html'
     
