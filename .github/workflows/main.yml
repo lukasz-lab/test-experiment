@@ -10,7 +10,7 @@ jobs:
     steps:
     #Using another action for AsyncAPI for validation
     - name: asyncapi-github-action
-      uses: WaleedAshraf/asyncapi-github-action@v0
+      uses: WaleedAshraf/asyncapi-github-action@v0.0.2
       with:
         filepath: docs/api/my-asyncapi.yaml
     
