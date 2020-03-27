@@ -8,6 +8,9 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
+    #"standard step" where repo needs to be checked-out first
+    - name: Checkout repo
+      uses: actions/checkout@v2
     #Using another action for AsyncAPI for validation
     - name: asyncapi-github-action
       uses: WaleedAshraf/asyncapi-github-action@v0.0.2
