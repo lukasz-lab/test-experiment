@@ -25,16 +25,8 @@ jobs:
     #tb removed
     - name: LS
       run: |
-        echo ${{github.event}}
-        echo ${{github.event_path}}
-        echo ${{github.workflow}}
-        echo ${{github.run_id}}
-        echo ${{github.run_number}}
-        echo ${{github.workspace}}
-        echo ${{github.action}}
         ls
         cd output && ls
-        cd ../node_modules && ls
       
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
