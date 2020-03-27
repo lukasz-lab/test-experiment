@@ -21,7 +21,6 @@ jobs:
     #In case all defaults are fine for you, just add such step
     - name: Generating Markdown from my AsyncAPI document
       uses: derberg/github-action-for-generator@v1.0.4
-      run: ls
     
     #tb removed
     - name: Generating Markdown from my AsyncAPI document
