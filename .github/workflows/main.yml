@@ -24,7 +24,7 @@ jobs:
     
     #tb removed
     - name: LS
-      run: cd output && ls
+      run: cd output && cat README.md
       
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
@@ -47,7 +47,7 @@ jobs:
     - name: LS
       run: |
         cd generated-html && ls
-        cd output && ls
+        cd ../output && ls
       
     #Using another action that takes generated HTML and pushes it to GH Pages
     - name: Deploy GH page
