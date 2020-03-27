@@ -30,7 +30,7 @@ jobs:
     - name: Generating HTML from my AsyncAPI document
       uses: derberg/github-action-for-generator@v1.0.7
       with:
-        template: '@asyncapi/html'
+        template: '@asyncapi/html-template'
         filepath: docs/api/my-asyncapi.yml
         parameters: 'baseHref=/test-experiment/ sidebarOrganization=byTags' #space separated list of key/values
         output: 'generated-html'
