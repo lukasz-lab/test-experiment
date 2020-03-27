@@ -22,7 +22,7 @@ jobs:
     - name: Generating Markdown from my AsyncAPI document
       uses: derberg/github-action-for-generator@v1.0.14
       env:
-        INSTALL_LOCATION: /home/runner/work/_actions/derberg/github-action-for-generator/v1.0.14/node_modules/@asyncapi/generator
+        INSTALL_LOCATION: /home/runner/work/_actions/derberg/github-action-for-generator/v1.0.14
 
     #tb removed
     - name: LS
@@ -39,14 +39,14 @@ jobs:
         parameters: baseHref=/test-experiment/ sidebarOrganization=byTags #space separated list of key/values
         output: generated-html
       env:
-        INSTALL_LOCATION: /home/runner/work/_actions/derberg/github-action-for-generator/v1.0.14/node_modules/@asyncapi/generator
+        INSTALL_LOCATION: /home/runner/work/_actions/derberg/github-action-for-generator/v1.0.14
     
     #In case you want to have more steps in your workflow after generation and you need to know what files were exactly generated, you can access this information as shown below
     - name: Generating Markdown from my AsyncAPI document
       id: generation
       uses: derberg/github-action-for-generator@v1.0.14
     - name: Another step where I want to know what files were generated
-      run: echo {{ steps.generation.outputs.files }}
+      run: echo ${{steps.generation.outputs.files}}
     
         
     #tb removed
