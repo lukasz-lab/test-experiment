@@ -15,7 +15,7 @@ jobs:
     - name: asyncapi-github-action
       uses: WaleedAshraf/asyncapi-github-action@v0.0.2
       with:
-        filepath: docs/api/my-asyncapi.yaml
+        filepath: docs/api/my-asyncapi.yml
     
     #In case all defaults are fine for you, just add such step
     - name: Generating Markdown from my AsyncAPI document
