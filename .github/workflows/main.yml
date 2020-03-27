@@ -32,8 +32,8 @@ jobs:
       with:
         template: '@asyncapi/html-template'
         filepath: docs/api/my-asyncapi.yml
-        parameters: 'baseHref=/test-experiment/ sidebarOrganization=byTags' #space separated list of key/values
-        output: 'generated-html'
+        parameters: baseHref=/test-experiment/ sidebarOrganization=byTags #space separated list of key/values
+        output: generated-html
     
     #In case you want to have more steps in your workflow after generation and you need to know what files were exactly generated, you can access this information as shown below
     - name: Generating Markdown from my AsyncAPI document
@@ -45,7 +45,9 @@ jobs:
         
     #tb removed
     - name: LS
-      run: ls
+      run: |
+        cd generated-html && ls
+        cd output && ls
       
     #Using another action that takes generated HTML and pushes it to GH Pages
     - name: Deploy GH page
