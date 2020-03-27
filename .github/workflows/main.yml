@@ -1,0 +1,43 @@
+name: AsyncAPI documents processing
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    #Using another action for AsyncAPI for validation
+    - name: asyncapi-github-action
+      uses: WaleedAshraf/asyncapi-github-action@v0
+      with:
+        filepath: docs/api/my-asyncapi.yaml
+    
+    #In case all defaults are fine for you, just add such step
+    - name: Generating Markdown from my AsyncAPI document
+      uses: actions/github-action-for-generator@v1.0.0
+      
+    #In case you do not want to use defaults, you for example want to use different template
+    - name: Generating HTML from my AsyncAPI document
+      uses: actions/github-action-for-generator@v1.0.0
+      with:
+        template: @asyncapi/html
+        filepath: docs/api/my-asyncapi.yaml
+        parameters: 'baseHref=/test-experiment/ sidebarOrganization=byTags' #space separated list of key/values
+        output: 'generated-html'
+    
+    #In case you want to have more steps in your workflow after generation and you need to know what files were exactly generated, you can access this information as shown below
+    - name: Generating Markdown from my AsyncAPI document
+      id: generation
+      uses: actions/github-action-for-generator@v1.0.0
+    - name: Another step where I want to know what files were generated
+      run: echo steps.generation.outputs.files
+      
+    #Using another action that takes generated HTML and pushes it to GH Pages
+    - name: Deploy GH page
+      uses: JamesIves/github-pages-deploy-action@3.4.2
+      with:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: generated-html
