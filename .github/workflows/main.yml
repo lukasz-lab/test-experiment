@@ -21,6 +21,8 @@ jobs:
     #In case all defaults are fine for you, just add such step
     - name: Generating Markdown from my AsyncAPI document
       uses: derberg/github-action-for-generator@v1.0.10
+      env:
+        DEFAULT_TEMPLATES_DIR: /home/runner/work/test-experiment/test-experiment/node-modules
     
     #tb removed
     - name: LS
