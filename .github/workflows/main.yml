@@ -22,7 +22,7 @@ jobs:
     - name: Generating HTML from my AsyncAPI document
       uses: actions/github-action-for-generator@v1.0.0
       with:
-        template: @asyncapi/html
+        template: '@asyncapi/html'
         filepath: docs/api/my-asyncapi.yaml
         parameters: 'baseHref=/test-experiment/ sidebarOrganization=byTags' #space separated list of key/values
         output: 'generated-html'
