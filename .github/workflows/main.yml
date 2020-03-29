@@ -36,7 +36,9 @@ jobs:
       id: generation
       uses: derberg/github-action-for-generator@v1.0.16
     - name: Another step where I want to know what files were generated so I can pass it to another step and process them forward if needed
-      run: echo ${{steps.generation.outputs.files}}
+      run: |
+        shopt -s dotglob
+        echo ${{steps.generation.outputs.files}}
       
     #Using another action that takes generated HTML and pushes it to GH Pages
     - name: Deploy GH page
