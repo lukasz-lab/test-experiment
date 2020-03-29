@@ -21,12 +21,6 @@ jobs:
     #In case all defaults are fine for you, just add such step
     - name: Generating Markdown from my AsyncAPI document
       uses: derberg/github-action-for-generator@v1.0.16
-
-    #tb removed
-    - name: LS
-      run: |
-        ls
-        cd output && ls
       
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
@@ -41,15 +35,8 @@ jobs:
     - name: Generating Markdown from my AsyncAPI document
       id: generation
       uses: derberg/github-action-for-generator@v1.0.16
-    - name: Another step where I want to know what files were generated
+    - name: Another step where I want to know what files were generated so I can pass it to another step and process them forward if needed
       run: echo ${{steps.generation.outputs.files}}
-    
-        
-    #tb removed
-    - name: LS
-      run: |
-        cd generated-html && ls
-        cd ../output && ls
       
     #Using another action that takes generated HTML and pushes it to GH Pages
     - name: Deploy GH page
