@@ -17,11 +17,7 @@ jobs:
       uses: WaleedAshraf/asyncapi-github-action@v0.0.3
       with:
         filepath: docs/api/my-asyncapi.yml
-    
-    #In case all defaults are fine for you, just add such step
-    - name: Generating Markdown from my AsyncAPI document
-      uses: derberg/github-action-for-generator@fb07a43cbe24f21e469dfe5dd88afb4ba799fc84
-      
+
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
       uses: derberg/github-action-for-generator@fb07a43cbe24f21e469dfe5dd88afb4ba799fc84
@@ -30,6 +26,10 @@ jobs:
         filepath: docs/api/my-asyncapi.yml
         parameters: baseHref=/test-experiment/ sidebarOrganization=byTags #space separated list of key/values
         output: generated-html
+
+    #In case all defaults are fine for you, just add such step
+    - name: Generating Markdown from my AsyncAPI document
+      uses: derberg/github-action-for-generator@fb07a43cbe24f21e469dfe5dd88afb4ba799fc84
     
     #In case you want to have more steps in your workflow after generation and you need to know what files were exactly generated, you can access this information as shown below
     - name: Generating Markdown from my AsyncAPI document
