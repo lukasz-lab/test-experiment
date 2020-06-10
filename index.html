@@ -77,6 +77,19 @@
       
 
       
+    <h2 class="text-xs uppercase text-grey mt-10 mb-4 font-thin">Messages</h2>
+    <ul class="text-sm list-reset mt-2">
+      
+        <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3"
+          href="#message-&lt;anonymous-message-1&gt;">
+          <div style="display:inline-block;">
+            
+<span class="string-chunk" style="padding-top: 2px;">&lt;anonymous-message-1&gt;</span>
+
+          </div>
+        </a>
+      
+    </ul>
     
   </div>
 </div>
@@ -118,7 +131,7 @@ to remotely manage the city lights.</p>
         <div>
           <div class="pr-4 font-mono">
             
-<span class="string-chunk" >mqtt:</span><span class="string-chunk" >/</span><span class="string-chunk" >/test</span><span class="string-chunk" >.mosquitto</span><span class="string-chunk" >.org</span>
+<span class="string-chunk" >mqtt://test.mosquitto.org</span>
 
 
             
@@ -165,7 +178,7 @@ to remotely manage the city lights.</p>
       
       
       
-<span class="string-chunk" >light</span><span class="string-chunk" >/measured</span>
+<span class="string-chunk" >light/measured</span>
 
     </h3>
 
@@ -191,6 +204,16 @@ to remotely manage the city lights.</p>
     
   </div>
   <p class="text-grey-dark text-sm"></p>
+  
+  
+
+<div class="mt-4">
+  
+</div>
+
+
+
+
   <div class="mt-4 mb-4 markdown"></div>
   
 <div>
@@ -200,12 +223,13 @@ to remotely manage the city lights.</p>
   <div class="is-open">
     <div class="js-prop cursor-pointer py-2 flex property">
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
-        <span class="text-sm " style="word-break: break-word;">Payload</span>
+        <span class="text-sm" style="word-break: break-word;">Payload</span>
         
         <svg class="expand" version="1.1" viewBox="0 0 24 24" x="0"
           xmlns="http://www.w3.org/2000/svg" y="0">
           <polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon>
         </svg>
+        
         
         
       </div>
@@ -250,7 +274,8 @@ object
   <div class="">
     <div class=" flex property">
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
-        <span class="text-sm " style="word-break: break-word;">id</span>
+        <span class="text-sm" style="word-break: break-word;">id</span>
+        
         
         
       </div>
@@ -303,7 +328,8 @@ integer
   <div class="">
     <div class=" flex property">
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
-        <span class="text-sm " style="word-break: break-word;">lumens</span>
+        <span class="text-sm" style="word-break: break-word;">lumens</span>
+        
         
         
       </div>
@@ -356,7 +382,8 @@ integer
   <div class="">
     <div class=" flex property">
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
-        <span class="text-sm " style="word-break: break-word;">sentAt</span>
+        <span class="text-sm" style="word-break: break-word;">sentAt</span>
+        
         
         
       </div>
@@ -436,9 +463,11 @@ string
     
 
     
+
 <div class="mt-4">
   
 </div>
+
 
 
   </div>
@@ -451,27 +480,32 @@ string
   
 
 <form>
-  <input type="radio" checked id="example-payload-light/measured-&lt;anonymous-message-1&gt;" name="tab" class="examples-payload-tab hidden" />
-  <label for="example-payload-light/measured-&lt;anonymous-message-1&gt;" class="py-1 px-2 mr-2 mb-4 text-grey-lightest text-sm border rounded focus:outline-none cursor-pointer text-grey-lightest" >Payload</label>
-
-  <input type="radio" id="example-headers-light/measured-&lt;anonymous-message-1&gt;" name="tab" class="examples-headers-tab hidden" disabled />
-  <label for="example-headers-light/measured-&lt;anonymous-message-1&gt;"
-      class="py-1 px-2 mr-2 mb-4 text-sm border rounded focus:outline-none cursor-pointer text-grey-dark border-grey-dark opacity-25" title="This message does not have headers">Headers</label>
-
-  <div class="payload-examples mt-4">
-    
-    <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
+  <h5 class="examples-uid text-orange mt-4">&lt;anonymous-message-1&gt;</h5>
+  
+    <div class="payload-examples mb-4 ">
+      <div class="js-prop cursor-pointer  flex property">
+        <span class="px-2 mr-2 text-grey-lightest text-sm border rounded focus:outline-none cursor-pointer">Payload</span>
+        
+          <svg class="expand" version="1.1" viewBox="0 0 24 24" x="0"
+            xmlns="http://www.w3.org/2000/svg" y="0">
+            <polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon>
+          </svg>
+        
+      </div>
+      <div class="children payload-examples mt-4">
+        
+        <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{
   "id": 0,
   "lumens": 0,
-  "sentAt": "2020-03-31T13:14:21Z"
+  "sentAt": "2020-06-10T13:59:01Z"
 }</code></pre>
-    <h6 class="text-xs font-bold text-grey-darker italic">This example has been generated automatically.</h6>
-    
-  </div>
+        <h6 class="text-xs font-bold text-grey-darker italic">This example has been generated automatically.</h6>
+        
+      </div>
+    </div>
+  
 
-  <div class="headers-examples mt-4">
-    
-  </div>
+  
 </form>
 
 
@@ -487,6 +521,289 @@ string
   </div>
 
 
+
+
+
+<a name="messages"></a>
+<h2 class="ml-8 mt-4">Messages</h2>
+
+<div class="responsive-container">
+  <div class="center-block p-8">
+    <div class="pb-8">
+      
+      <a name="message-&lt;anonymous-message-1&gt;"></a>
+      
+
+<div class="bg-grey-lighter rounded p-4 mt-2">
+  <div class="text-sm text-grey-darker mb-2">
+    
+    <span class="text-grey-darker font-bold mr-2">#1</span>
+    
+    
+      
+    
+  </div>
+  <p class="text-grey-dark text-sm"></p>
+  
+  
+
+<div class="mt-4">
+  
+</div>
+
+
+
+
+  <div class="mt-4 mb-4 markdown"></div>
+  
+<div>
+  
+
+<div class="bg-grey-lighter  rounded">
+  <div class="">
+    <div class="js-prop cursor-pointer py-2 flex property">
+      <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
+        <span class="text-sm" style="word-break: break-word;">Payload</span>
+        
+        <svg class="expand" version="1.1" viewBox="0 0 24 24" x="0"
+          xmlns="http://www.w3.org/2000/svg" y="0">
+          <polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon>
+        </svg>
+        
+        
+        
+      </div>
+
+      <div>
+        <div class="capitalize text-sm text-teal font-bold">
+          
+object
+          
+          
+          
+          <div class="inline-block">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </div>
+        </div>
+
+        
+        
+        
+        
+        
+      </div>
+    </div>
+
+    
+      <div class="children bg-grey-lightest py-4 rounded">
+        
+          
+            
+
+<div class="bg-grey-lightest pl-8 pr-8 rounded">
+  <div class="">
+    <div class=" flex property">
+      <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
+        <span class="text-sm" style="word-break: break-word;">id</span>
+        
+        
+        
+      </div>
+
+      <div>
+        <div class="capitalize text-sm text-teal font-bold">
+          
+integer
+          
+          
+          
+          <div class="inline-block">
+            
+            
+              <span class="bg-purple-dark font-bold no-underline text-white rounded lowercase ml-2"
+                style="height: 20px;font-size: 11px;padding: 3px;" title="At least 0">>= 0</span>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </div>
+        </div>
+
+        
+          <div class="text-sm markdown"><p>Id of the streetlight.</p>
+</div>
+        
+        
+        
+        
+        
+      </div>
+    </div>
+
+    
+  </div>
+</div>
+
+
+          
+            
+
+<div class="bg-grey-lightest pl-8 pr-8 rounded">
+  <div class="">
+    <div class=" flex property">
+      <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
+        <span class="text-sm" style="word-break: break-word;">lumens</span>
+        
+        
+        
+      </div>
+
+      <div>
+        <div class="capitalize text-sm text-teal font-bold">
+          
+integer
+          
+          
+          
+          <div class="inline-block">
+            
+            
+              <span class="bg-purple-dark font-bold no-underline text-white rounded lowercase ml-2"
+                style="height: 20px;font-size: 11px;padding: 3px;" title="At least 0">>= 0</span>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </div>
+        </div>
+
+        
+          <div class="text-sm markdown"><p>Light intensity measured in lumens.</p>
+</div>
+        
+        
+        
+        
+        
+      </div>
+    </div>
+
+    
+  </div>
+</div>
+
+
+          
+            
+
+<div class="bg-grey-lightest pl-8 pr-8 rounded">
+  <div class="">
+    <div class=" flex property">
+      <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
+        <span class="text-sm" style="word-break: break-word;">sentAt</span>
+        
+        
+        
+      </div>
+
+      <div>
+        <div class="capitalize text-sm text-teal font-bold">
+          
+string
+          
+          
+          
+          <div class="inline-block">
+            
+              <span class="bg-yellow-dark font-bold no-underline text-black rounded lowercase ml-2"
+                style="height: 20px;font-size: 11px;padding: 3px;">date-time</span>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </div>
+        </div>
+
+        
+          <div class="text-sm markdown"><p>Date and time when the message was sent.</p>
+</div>
+        
+        
+        
+        
+        
+      </div>
+    </div>
+
+    
+  </div>
+</div>
+
+
+          
+        
+
+        
+        
+
+        
+
+        
+          
+            <p class="pl-6 mb-2 mt-4 text-xs text-grey-darker">Additional properties are allowed.</p>
+          
+        
+
+        
+
+        
+
+        
+      </div>
+    
+  </div>
+</div>
+
+
+</div>
+
+  
+</div>
+
+
+      
+    </div>
+  </div>
+</div>
 
 
     </div>
