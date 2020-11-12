@@ -23,6 +23,8 @@ jobs:
     #In case all defaults are fine for you, just add such step
     - name: Generating Markdown from my AsyncAPI document
       uses: derberg/github-action-for-generator@f891f9edbabfec19c57503e622de08ef103d63f2
+      env:
+        NODE_ENV: production
     
     #In case you want to have more steps in your workflow after generation and you need to know what files were exactly generated, you can access this information as shown below
     - name: Generating Markdown from my AsyncAPI document
