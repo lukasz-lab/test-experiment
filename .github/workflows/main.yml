@@ -24,18 +24,18 @@ jobs:
 
     #In case all defaults are fine for you, just add such step
     - name: Generating Markdown from my AsyncAPI document
-      uses: derberg/github-action-for-generator@1f1e1c990a74a155dd26454aa1c45d2570e2715a
+      uses: derberg/github-action-for-generator@4bafea8b91939a2458e783343af8c12187c05579
     
     #In case you want to have more steps in your workflow after generation and you need to know what files were exactly generated, you can access this information as shown below
     - name: Generating Markdown from my AsyncAPI document
       id: generation
-      uses: derberg/github-action-for-generator@1f1e1c990a74a155dd26454aa1c45d2570e2715a
+      uses: derberg/github-action-for-generator@4bafea8b91939a2458e783343af8c12187c05579
     - name: Another step where I want to know what files were generated so I can pass it to another step and process them forward if needed
       run: echo '${{steps.generation.outputs.files}}'
 
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
-      uses: derberg/github-action-for-generator@1f1e1c990a74a155dd26454aa1c45d2570e2715a
+      uses: derberg/github-action-for-generator@4bafea8b91939a2458e783343af8c12187c05579
       with:
         template: '@asyncapi/html-template@0.15.4'
         filepath: docs/api/my-asyncapi.yml
