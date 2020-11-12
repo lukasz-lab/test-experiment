@@ -8,8 +8,6 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-    - name: node --version
-      run: node --version
     #"standard step" where repo needs to be checked-out first
     - name: Checkout repo
       uses: actions/checkout@v2
@@ -22,20 +20,18 @@ jobs:
 
     #In case all defaults are fine for you, just add such step
     - name: Generating Markdown from my AsyncAPI document
-      uses: derberg/github-action-for-generator@f891f9edbabfec19c57503e622de08ef103d63f2
-      env:
-        NODE_ENV: production
+      uses: derberg/github-action-for-generator@5665142016ea2c847484bd5a314b67791c584833
     
     #In case you want to have more steps in your workflow after generation and you need to know what files were exactly generated, you can access this information as shown below
     - name: Generating Markdown from my AsyncAPI document
       id: generation
-      uses: derberg/github-action-for-generator@f891f9edbabfec19c57503e622de08ef103d63f2
+      uses: derberg/github-action-for-generator@5665142016ea2c847484bd5a314b67791c584833
     - name: Another step where I want to know what files were generated so I can pass it to another step and process them forward if needed
       run: echo '${{steps.generation.outputs.files}}'
 
     #In case you do not want to use defaults, you for example want to use different template
     - name: Generating HTML from my AsyncAPI document
-      uses: derberg/github-action-for-generator@f891f9edbabfec19c57503e622de08ef103d63f2
+      uses: derberg/github-action-for-generator@5665142016ea2c847484bd5a314b67791c584833
       with:
         template: '@asyncapi/html-template@0.15.4'
         filepath: docs/api/my-asyncapi.yml
