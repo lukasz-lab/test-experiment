@@ -53,9 +53,9 @@ jobs:
             const { repository: { releases: { nodes } } } = await github.graphql(query, variables);
             console.log(nodes)
             core.setOutput('lastver', nodes[0].name);
-            console.log(nodes)
-            #In case of first release in the packate, this value will be undefined and we need to check that further to not get errors
-            #We should tweet about the release no matter of the type as it is initial release
+            console.log(nodes);
+            // In case of first release in the packate, this value will be undefined and we need to check that further to not get errors
+            // We should tweet about the release no matter of the type as it is initial release
             if (nodes.length != 1) core.setOutput('previousver', nodes[1].name);
       - name: Identify release type
         if: steps.versions.outputs.previousver != 'undefined'
