@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test echo
-        run: echo "Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild 😱💪🍾🎂 Go and see what is it about ${{github.event.release.html_url}}${{ github.event.changes.body }}"
+        run: echo "Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild ${{ github.changes.body }}"
       - name: Send info about release to Slack
         uses: someimportantcompany/github-actions-slack-message@v1
         with:
@@ -52,7 +52,7 @@ jobs:
             };
             console.log(JSON.stringify(await github.graphql(query, variables),null,2))
             const { repository: { releases: { nodes } } } = await github.graphql(query, variables);
-            const versions = nodes.map(releaseName => releaseName.substr(1));
+            const versions = nodes.map(releaseName => releaseName.substring(1));
             core.setOutput('lastver', versions[0]);
             core.setOutput('previousver', versions[1]);
       - name: Identify release type
