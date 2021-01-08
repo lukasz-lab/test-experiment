@@ -51,12 +51,12 @@ jobs:
               name: context.repo.repo
             };
             const { repository: { releases: { nodes } } } = await github.graphql(query, variables);
-            const versions = nodes.map(releaseName => releaseName.name.substring(1));
-            
-            core.setOutput('lastver', versions[0]);
+            console.log(nodes)
+            core.setOutput('lastver', nodes[0].name);
+            console.log(nodes)
             #In case of first release in the packate, this value will be undefined and we need to check that further to not get errors
             #We should tweet about the release no matter of the type as it is initial release
-            core.setOutput('previousver', versions[1]);
+            if (nodes.length != 1) core.setOutput('previousver', nodes[1].name);
       - name: Identify release type
         if: steps.versions.outputs.previousver != 'undefined'
         id: releasetype
@@ -65,7 +65,7 @@ jobs:
         id: author
         run: echo "::set-output name=name::$(git log -1 --pretty=format:'%an')"
       - name: test version info
-        run: echo ${{ steps.releasetype.outputs.type }}
+        run: echo ${{ steps.releasetype.outputs.type }} ${{ steps.versions.outputs.previousver }}
       - name: test2
         if: steps.releasetype.outputs.type != 'null' && steps.releasetype.outputs.type != 'patch' # null means that versions are the same
         run: echo "dupa"
