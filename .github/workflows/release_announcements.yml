@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test echo
-        run: echo "Release details ${{ github.release.changes }}"
+        run: echo "Release details ${{ github.event.release.body }}"
       - name: Send info about release to Slack
         uses: someimportantcompany/github-actions-slack-message@v1
         with:
@@ -58,12 +58,12 @@ jobs:
             core.setOutput('previousver', versions[1]);
       - name: Identify release type
         id: releasetype
-        run: echo "::set-output name=type::$(npx -q -p semver-diff-cli semver-diff ${{steps.versions.outputs.lastver}} ${{steps.versions.outputs.previousver}})"
+        run: echo "::set-output name=type::$(npx -q -p semver-diff-cli semver-diff ${{steps.versions.outputs.previousver}} ${{steps.versions.outputs.lastver}})"
       - name: Get name of the person that is behind the newly released version
         id: author
         run: echo "::set-output name=name::$(git log -1 --pretty=format:'%an')"
       - name: test version info
-        run: echo ${{steps.versions.outputs.lastver}} ${{steps.versions.outputs.previousver}} ${{ steps.releasetype.outputs.type }} ${{ steps.author.outputs.name }}
+        run: ${{ steps.releasetype.outputs.type }}
       - name: Publish information about the release to Twitter # tweet only if detected version change is not a patch
         if: steps.releasetype.outputs.type != 'null' && steps.releasetype.outputs.type != 'patch' # null means that versions are the same
         uses: m1ner79/Github-Twittction@v1.0.1
