@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test echo
-        run: echo "Release details ${{ github.changes }}"
+        run: echo "Release details ${{ github.release.changes }}"
       - name: Send info about release to Slack
         uses: someimportantcompany/github-actions-slack-message@v1
         with:
@@ -50,9 +50,10 @@ jobs:
               owner: context.repo.owner,
               name: context.repo.repo
             };
-            console.log(JSON.stringify(await github.graphql(query, variables),null,2))
+            
             const { repository: { releases: { nodes } } } = await github.graphql(query, variables);
             const versions = nodes.map(releaseName => releaseName.name.substring(1));
+            console.log(JSON.stringify(versions,null,2))
             core.setOutput('lastver', versions[0]);
             core.setOutput('previousver', versions[1]);
       - name: Identify release type
@@ -62,7 +63,7 @@ jobs:
         id: author
         run: echo "::set-output name=name::$(git log -1 --pretty=format:'%an')"
       - name: test version info
-        run: echo ${{ steps.releasetype.outputs.type }} ${{ steps.author.outputs.name }}
+        run: echo ${{steps.versions.outputs.lastver}} ${{steps.versions.outputs.previousver}} ${{ steps.releasetype.outputs.type }} ${{ steps.author.outputs.name }}
       - name: Publish information about the release to Twitter # tweet only if detected version change is not a patch
         if: steps.releasetype.outputs.type != 'null' && steps.releasetype.outputs.type != 'patch' # null means that versions are the same
         uses: m1ner79/Github-Twittction@v1.0.1
