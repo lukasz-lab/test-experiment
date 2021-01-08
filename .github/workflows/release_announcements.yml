@@ -21,15 +21,10 @@ jobs:
 
             Details:
             ${{ github.event.changes.body }}
-          color: info
-       - name: Test echo
-         run: |
-           echo "Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild 😱💪🍾🎂
-            Go and see what is it about ${{github.event.release.html_url}}
-
-            Details:
-            ${{ github.event.changes.body }}"
-
+            color: info
+      - name: Test echo
+        run: echo "Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild 😱💪🍾🎂 Go and see what is it about ${{github.event.release.html_url}}${{ github.event.changes.body }}"
+  
   twitter:
     name: Send info about minor and major releases to Twitter
     runs-on: ubuntu-latest
