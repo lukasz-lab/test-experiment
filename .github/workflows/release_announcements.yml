@@ -1,0 +1,78 @@
+name: 'Announce releases in different channels'
+
+on: 
+  release:
+    types: 
+      - published
+
+jobs:
+
+  slack:
+    name: Send info about every new release to Slack
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send info about release to Slack
+        uses: someimportantcompany/github-actions-slack-message@v1
+        with:
+          webhook-url: ${{ secrets.SLACK_GITHUB_RELEASES }}
+          text: |
+            Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild 😱💪🍾🎂
+            Go and see what is it about ${{github.event.release.html_url}}
+
+            Details:
+            ${{ github.event.changes.body }}
+          color: info
+       - name: Test echo
+         run: |
+           echo "Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild 😱💪🍾🎂
+            Go and see what is it about ${{github.event.release.html_url}}
+
+            Details:
+            ${{ github.event.changes.body }}"
+
+  twitter:
+    name: Send info about minor and major releases to Twitter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Get version of last and previous release
+        uses: actions/github-script@v3
+        id: versions
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const query = `query($owner:String!, $name:String!) {
+              repository(owner:$owner, name:$name){
+                releases(first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
+                  nodes {
+                    name
+                  }
+                }
+              }
+            }`;
+            const variables = {
+              owner: context.repo.owner,
+              name: context.repo.repo
+            };
+            const { repository: { releases: { nodes } } } = await github.graphql(query, variables);
+            const versions = nodes.map(releaseName => releaseName.substr(1));
+            core.setOutput('lastver', versions[0]);
+            core.setOutput('previousver', versions[1]);
+      - name: Identify release type
+        id: releasetype
+        run: echo "::set-output name=type::$(npx -q -p semver-diff-cli semver-diff ${{steps.versions.outputs.lastver}} ${{steps.versions.outputs.previousver}})"
+      - name: Get name of the person that is behind the newly released version
+        id: author
+        run: echo "::set-output name=name::$(git log -1 --pretty=format:'%an')"
+      - name: test version info
+        run: echo ${{ steps.releasetype.outputs.type }} ${{ steps.author.outputs.name }}
+      - name: Publish information about the release to Twitter # tweet only if detected version change is not a patch
+        if: steps.releasetype.outputs.type != 'null' && steps.releasetype.outputs.type != 'patch' # null means that versions are the same
+        uses: m1ner79/Github-Twittction@v1.0.1
+        with:
+          twitter_status: "Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild 😱💪🍾🎂\n\nThank you for the contribution ${{ steps.author.outputs.name }} ${{github.event.release.html_url}}"
+          twitter_consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }} 
+          twitter_consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }} 
+          twitter_access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }} 
+          twitter_access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
