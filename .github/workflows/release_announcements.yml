@@ -52,9 +52,13 @@ jobs:
             };
             const { repository: { releases: { nodes } } } = await github.graphql(query, variables);
             const versions = nodes.map(releaseName => releaseName.name.substring(1));
+            
             core.setOutput('lastver', versions[0]);
+            #In case of first release in the packate, this value will be undefined and we need to check that further to not get errors
+            #We should tweet about the release no matter of the type as it is initial release
             core.setOutput('previousver', versions[1]);
       - name: Identify release type
+        if: steps.versions.outputs.previousver != 'undefined'
         id: releasetype
         run: echo "::set-output name=type::$(npx -q -p semver-diff-cli semver-diff ${{steps.versions.outputs.previousver}} ${{steps.versions.outputs.lastver}})"
       - name: Get name of the person that is behind the newly released version
@@ -62,6 +66,9 @@ jobs:
         run: echo "::set-output name=name::$(git log -1 --pretty=format:'%an')"
       - name: test version info
         run: echo ${{ steps.releasetype.outputs.type }}
+      - name: test2
+        if: steps.releasetype.outputs.type != 'null' && steps.releasetype.outputs.type != 'patch' # null means that versions are the same
+        run: echo "dupa"
       - name: Publish information about the release to Twitter # tweet only if detected version change is not a patch
         if: steps.releasetype.outputs.type != 'null' && steps.releasetype.outputs.type != 'patch' # null means that versions are the same
         uses: m1ner79/Github-Twittction@v1.0.1
