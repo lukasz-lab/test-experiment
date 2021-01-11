@@ -14,4 +14,4 @@ jobs:
         name: Slack - notify on every new issue or PR
         runs-on: ubuntu-latest
         steps:
-          - run: echo ${{github.event.type}}
+          - run: echo ${{github}}
