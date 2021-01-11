@@ -21,7 +21,7 @@ jobs:
               uses: someimportantcompany/github-actions-slack-message@v1
               env:
                 SLACK_WEBHOOK: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
-                SLACK_CUSTOM_PAYLOAD: '{"text":"🐛 New Issue 🐛 by ${{github.actor}}\\n [${{github.event.issue.title}}](${{github.event.issue.html_url}}) \\n **Description**: \\n"}'
+                SLACK_CUSTOM_PAYLOAD: '{"text":" New Issue  by ${{github.actor}}\\n [${{github.event.issue.title}}](${{github.event.issue.html_url}}) \\n **Description**: \\n"}'
             - if: github.event_name == 'pull_request' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
               name: Send info about pull request
               uses: Ilshidur/action-slack@2.0.2
