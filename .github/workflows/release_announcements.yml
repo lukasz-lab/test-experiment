@@ -1,4 +1,6 @@
-name: 'Notify Slack that there is a new issue or a PR'
+#This action is centrally managed in https://github.com/asyncapi/.github/
+#Don't make changes to this file in this repo as they will be overwritten with changes made to the same file in above mentioned repo
+name: 'Notify slack that there is a new issue or a PR'
 
 on:
     issues:
@@ -14,8 +16,25 @@ jobs:
         name: Slack - notify on every new issue or PR
         runs-on: ubuntu-latest
         steps:
-          - run: |
-              echo ${{github.event_name}}
-              echo ${{github.event.issue.title}}
-              echo ${{github.event.issue.body}}
-
+            - if: github.event_name == 'issues' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor == 'dependabot-preview[bot]'
+              name: Send info about issue
+              uses: someimportantcompany/github-actions-slack-message@v1
+              with:
+                webhook-url: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
+                text: |
+                    New Issue 🐛 by {{github.actor}}
+                    Title: ${{github.event.issue.title}}
+                    Details:
+                    ${{github.event.issue.body}}
+                color: info
+            - if: github.event_name == 'pull_request' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor == 'dependabot-preview[bot]'
+              name: Send info about pull request
+              uses: someimportantcompany/github-actions-slack-message@v1
+              with:
+                webhook-url: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
+                text: |
+                    New pull request 💪 by {{github.actor}}
+                    Title: ${{github.event.pull_request.title}}
+                    Details:
+                    ${{github.event.pull_request.body}}
+                color: info
