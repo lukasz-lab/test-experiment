@@ -17,5 +17,6 @@ jobs:
           - run: |
               echo ${{github.actor}}
               echo ${{github.event_name}}
-              echo ${{github.event.changes}}
-              echo ${{github.event.sender}}
+              echo ${{github.payload.title}}
+              echo ${{github.payload.body}}
+
