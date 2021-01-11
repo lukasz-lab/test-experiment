@@ -22,7 +22,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_RELEASES }}
-            SLACK_TITLE: Release <${{github.event.release.html_url}}|${{github.event.release.tag_name}}> for ${{github.repository}} is out in the wild 😱💪🍾🎂
+            SLACK_TITLE: Release [${{github.event.release.tag_name}}](${{github.event.release.html_url}}) for ${{github.repository}} is out in the wild 😱💪🍾🎂
             SLACK_MESSAGE: ${{steps.markdown.outputs.text}}
             MSG_MINIMAL: true
 
