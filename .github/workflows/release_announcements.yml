@@ -17,12 +17,12 @@ jobs:
         uses: LoveToKnow/slackify-markdown-action@v1.0.0
         id: markdown
         with:
-            text: "${{ github.event.release.body }}"
+            text: "[${{github.event.release.tag_name}}](${{github.event.release.html_url}}) \n ${{ github.event.release.body }}"
       - name: Send info about release to Slack
         uses: rtCamp/action-slack-notify@v2
         env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_RELEASES }}
-            SLACK_TITLE: Release [${{github.event.release.tag_name}}](${{github.event.release.html_url}}) for ${{github.repository}} is out in the wild 😱💪🍾🎂
+            SLACK_TITLE: Release ${{github.event.release.tag_name}} for ${{github.repository}} is out in the wild 😱💪🍾🎂
             SLACK_MESSAGE: ${{steps.markdown.outputs.text}}
             MSG_MINIMAL: true
 
