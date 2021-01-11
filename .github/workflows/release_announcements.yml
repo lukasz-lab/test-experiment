@@ -15,8 +15,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - run: |
-              echo ${{github.event.issues}}
               echo ${{github.event_name}}
-              echo ${{github.event.issues.title}}
-              echo ${{github.event.issues.body}}
+              echo ${{github.event.issue.title}}
+              echo ${{github.event.issue.body}}
 
