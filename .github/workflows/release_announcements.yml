@@ -18,7 +18,7 @@ jobs:
         steps:
             - if: github.event_name == 'issues' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
               name: Send info about issue
-              uses: 8398a7/action-slack@v3
+              uses: rtCamp/action-slack-notify@v2
               env:
                 SLACK_WEBHOOK: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
                 SLACK_MESSAGE: "🐛 New Issue 🐛 by ${{github.actor}}\n [${{github.event.issue.title}}](${{github.event.issue.html_url}}) \n **Description**: \n ${{github.event.issue.body}}"
