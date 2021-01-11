@@ -17,6 +17,6 @@ jobs:
           - run: |
               echo ${{github.actor}}
               echo ${{github.event_name}}
-              echo ${{github.payload.title}}
-              echo ${{github.payload.body}}
+              echo ${{github.event.issues.title}}
+              echo ${{github.event.issues.body}}
 
