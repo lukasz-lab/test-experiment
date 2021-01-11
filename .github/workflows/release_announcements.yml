@@ -23,6 +23,7 @@ jobs:
                 SLACK_WEBHOOK_URL: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
               with:
                 status: custom
+                github_token: ${{ secrets.GITHUB_TOKEN }}
                 custom_payload: |
                   {
                     username: '${{github.actor}},
