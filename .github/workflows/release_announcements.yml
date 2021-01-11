@@ -18,13 +18,25 @@ jobs:
         steps:
             - if: github.event_name == 'issues' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
               name: Send info about issue
-              uses: Ilshidur/action-slack@2.0.2
+              uses: 8398a7/action-slack@v3
+              with:
+                status: custom
+                fields: workflow,job,commit,repo,ref,author,took
+                custom_payload: |
+                      {
+                        username: '${{github.actor}},
+                        icon_emoji: ':octocat:',
+                        attachments: [{
+                          color: 'good',
+                          text: "🐛 New Issue 🐛 by ${{github.actor}}\n [${{github.event.issue.title}}](${{github.event.issue.html_url}})",
+                          mrkdwn_in: text
+                        }]
+                      }
               env:
-                SLACK_WEBHOOK: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
-                SLACK_CUSTOM_PAYLOAD: '{"text":"🐛 New Issue 🐛 by ${{github.actor}}\n [${{github.event.issue.title}}](${{github.event.issue.html_url}})"}'
+                SLACK_WEBHOOK_URL: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
             - if: github.event_name == 'pull_request' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
               name: Send info about pull request
               uses: Ilshidur/action-slack@2.0.2
               env:
                 SLACK_WEBHOOK: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
-                SLACK_CUSTOM_PAYLOAD: '{"text":"💪 New pull request 💪 by ${{github.actor}}\n [${{github.event.pull_request.title}}](${{github.event.pull_request.html_url}}) \n **Description**: \n"}'
+                SLACK_CUSTOM_PAYLOAD: '{"mrkdwn_in":["text","title"],"title":"💪 New pull request 💪 by ${{github.actor}}","text":"[${{github.event.pull_request.title}}](${{github.event.pull_request.html_url}}) \n **Description**: \n"}'
