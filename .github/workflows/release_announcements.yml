@@ -20,19 +20,8 @@ jobs:
               name: Send info about issue
               uses: 8398a7/action-slack@v3
               env:
-                SLACK_WEBHOOK_URL: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
-              with:
-                status: custom
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                custom_payload: |
-                  {
-                    username: '${{github.actor}},
-                    icon_emoji: ':octocat:',
-                    attachments: [{
-                      color: 'good',
-                      text: "🐛 New Issue 🐛 by ${{github.actor}}\n [${{github.event.issue.title}}](${{github.event.issue.html_url}})",
-                    }]
-                  }
+                SLACK_WEBHOOK: ${{ secrets.SLACK_GITHUB_NEWISSUEPR }}
+                SLACK_MESSAGE: "🐛 New Issue 🐛 by ${{github.actor}}\n [${{github.event.issue.title}}](${{github.event.issue.html_url}}) \n **Description**: \n ${{github.event.issue.body}}"
             - if: github.event_name == 'pull_request' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
               name: Send info about pull request
               uses: Ilshidur/action-slack@2.0.2
