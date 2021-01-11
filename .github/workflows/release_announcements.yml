@@ -16,7 +16,7 @@ jobs:
         name: Slack - notify on every new issue or PR
         runs-on: ubuntu-latest
         steps:
-            - if: github.event_name == 'issues' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor == 'dependabot-preview[bot]'
+            - if: github.event_name == 'issues' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
               name: Send info about issue
               uses: someimportantcompany/github-actions-slack-message@v1
               with:
@@ -27,7 +27,7 @@ jobs:
                     Details:
                     ${{github.event.issue.body}}
                 color: info
-            - if: github.event_name == 'pull_request' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor == 'dependabot-preview[bot]'
+            - if: github.event_name == 'pull_request' && github.actor != 'asyncapi-bot' && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
               name: Send info about pull request
               uses: someimportantcompany/github-actions-slack-message@v1
               with:
