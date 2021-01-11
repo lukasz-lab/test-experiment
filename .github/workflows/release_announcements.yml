@@ -15,7 +15,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - run: |
-              echo {{github.actor}}
-              echo {{github.event_name}}
-              echo {{github.event.changes}}
-              echo {{github.event.sender}}
+              echo ${{github.actor}}
+              echo ${{github.event_name}}
+              echo ${{github.event.changes}}
+              echo ${{github.event.sender}}
