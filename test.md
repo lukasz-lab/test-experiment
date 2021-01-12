@@ -111,35 +111,6 @@ The ID of the streetlight.
 
 Inform about environmental lighting conditions of a particular streetlight.
 
-##### Headers
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Accepted values</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-  <td>my-app-header </td>
-  <td>integer</td>
-  <td></td>
-  <td><em>Any</em></td>
-</tr></tbody>
-</table>
-
-
-###### Example of headers _(generated)_
-
-```json
-{
-  "my-app-header": 0
-}
-```
 
 
 
